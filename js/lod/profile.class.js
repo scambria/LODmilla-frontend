@@ -120,8 +120,8 @@ var Profile = new function() {
 
     this.searchURLs = {
         'dbpedia': 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?QueryClass=&MaxHits=' + this.addNewResourceSearchMaxHits.toString() + '&QueryString=MPAD_SEARCH_TERM',
-        'provesense': 'http://localhost:9090/blazegraph/sparql?query='
-            + encodeURIComponent('SELECT ?object ?label WHERE { ?object rdfs:label ?label . '
+        'provesense': 'http://localhost:9999/blazegraph/sparql?query='
+            + encodeURIComponent('SELECT ?object ?label WHERE { ?object ?get_all ?label . '
             		+' FILTER(REGEX(?label, \"MPAD_SEARCH_TERM\", "i")) } LIMIT' 
             		+ this.addNewResourceSearchMaxHits.toString()),
 //            		+'&format=application%2Fsparql-results%2Bxml&save=display&fname=',

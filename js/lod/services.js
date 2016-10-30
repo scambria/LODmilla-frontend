@@ -1,19 +1,37 @@
 var Lodmilla_services = {
-	    "http://www.w3.org/ns/prov-o": {
+	    "http://www.w3.org/ns/prov#": {
 	        "shortDescription": {
-	            "en": "prov-o"
+	            "en": "prov"
 	        },
 	        "description": {
-	            "en": "prov-o"
+	            "en": "prov"
 	        },
 	        "sparql": {            
-	        	"resourceConnectionsLabels": "select distinct * where { { <{URI}> ?prop ?out. FILTER(!isLiteral(?out) || lang(?out)=\"\" || lang(?out)=\"en\") OPTIONAL { ?out rdfs:label ?label. FILTER(lang(?label)=\"en\") } OPTIONAL { ?prop rdfs:label ?proplabel. FILTER(lang(?proplabel)=\"en\"||lang(?proplabel)=\"\"||lang(?proplabel)=\"en-us\") } } UNION { ?in ?prop  <{URI}> OPTIONAL { ?in rdfs:label ?label. FILTER(lang(?label)=\"en\"||lang(?label)=\"\") } OPTIONAL { ?prop rdfs:label ?proplabel. FILTER(lang(?proplabel)=\"en\"||lang(?proplabel)=\"\"||lang(?proplabel)=\"en-us\") } } }"
+	        	"resourceConnectionsLabels": "SELECT DISTINCT * WHERE { { <{URI}> ?prop ?out . FILTER(!isLiteral(?out)) } UNION { ?in ?prop  <{URI}> } }"
 	        },
-	        "endpoint": "http://localhost:8080/blazegraph/sparql",
+/*
+SELECT DISTINCT * WHERE 
+{ 
+  { 
+   <http://www.w3.org/ns/prov#Activity> ?prop ?out . 
+   FILTER(!isLiteral(?out)) 
+   OPTIONAL { ?out rdfs:label ?label } 
+   OPTIONAL { ?prop rdfs:label ?proplabel } 
+  } 
+  UNION 
+  { 
+    ?in ?prop  <http://www.w3.org/ns/prov#Activity> .
+   	FILTER(!isLiteral(?in)) 
+    OPTIONAL { ?in rdfs:label ?label } 
+    OPTIONAL { ?prop rdfs:label ?proplabel } 
+  } 
+}
+*/
+	        "endpoint": "http://localhost:9999/blazegraph/sparql",
 	        "prefix": {
-	            "default": "http://www.w3.org/ns/prov-o"
+	            "default": "http://www.w3.org/ns/prov"
 	        },
-	        "graph": "http://www.w3.org/ns/prov-o",
+	        "graph": "http://www.w3.org/ns/prov",
 	        "disabled": "false"
 	    },
     "http://lod.sztaki.hu/sztaki": {
