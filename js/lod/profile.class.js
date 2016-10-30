@@ -119,11 +119,12 @@ var Profile = new function() {
     };
 
     this.searchURLs = {
-        'dbpedia': 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?QueryClass=&MaxHits=' + this.addNewResourceSearchMaxHits.toString() + '&QueryString=MPAD_SEARCH_TERM',
         'provesense': 'http://localhost:9999/blazegraph/sparql?query='
-            + encodeURIComponent('SELECT ?s ?p ?o WHERE { ?s ?p ?o FILTER(REGEX(str(?s), \"MPAD_SEARCH_TERM\", "i") || REGEX(str(?p), \"MPAD_SEARCH_TERM\", "i") || REGEX(str(?o), \"MPAD_SEARCH_TERM\", "i")) } LIMIT 20' 
-            		+ this.addNewResourceSearchMaxHits.toString()),
-//            		+'&format=application%2Fsparql-results%2Bxml&save=display&fname=',
+                + encodeURIComponent('SELECT ?object ?label WHERE { ?object ?p ?label FILTER(REGEX(str(?object), \"MPAD_SEARCH_TERM\", "i") || REGEX(str(?p), \"MPAD_SEARCH_TERM\", "i") || REGEX(str(?label), \"MPAD_SEARCH_TERM\", "i")) } LIMIT ' 
+                		+ this.addNewResourceSearchMaxHits.toString()),
+//                		+'&format=application%2Fsparql-results%2Bxml&save=display&fname=',
+
+		'dbpedia': 'http://lookup.dbpedia.org/api/search.asmx/PrefixSearch?QueryClass=&MaxHits=' + this.addNewResourceSearchMaxHits.toString() + '&QueryString=MPAD_SEARCH_TERM',
 /*
         'wikidata': 'http://query.wikidata.org/'
             + encodeURIComponent('select ?object, ?label, max(?sc) as ?rank where { ?object rdfs:label ?label . '
